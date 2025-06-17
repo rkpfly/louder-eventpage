@@ -25,6 +25,9 @@ export default function AdminDashboard() {
       day: "numeric",
       month: "short",
       year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
     }); // Example: 1 Jul 2025
   };
 

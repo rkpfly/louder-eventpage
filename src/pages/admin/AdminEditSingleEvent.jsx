@@ -80,6 +80,7 @@ export default function AdminEditSingleEvent() {
   };
 
   if (!eventData) return <div>Loading...</div>;
+  const VITE_API_URL = import.meta.env.VITE_API_URL;
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -138,7 +139,7 @@ export default function AdminEditSingleEvent() {
             <div className="space-y-2">
               <Label>Current Image</Label>
               <img
-                src={`http://localhost:5000/${eventData.imgsrc}`}
+                src={`${VITE_API_URL + '/' + eventData.imgsrc}`}
                 alt="Event"
                 className="w-64 rounded"
               />

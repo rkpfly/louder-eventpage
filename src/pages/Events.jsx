@@ -5,18 +5,8 @@ import { useSelector } from "react-redux";
 
 // Month name mapping
 const MONTHS = [
-  "JAN",
-  "FEB",
-  "MAR",
-  "APR",
-  "MAY",
-  "JUNE",
-  "JULY",
-  "AUG",
-  "SEPT",
-  "OCT",
-  "NOV",
-  "DEC",
+  "JAN", "FEB", "MAR", "APR", "MAY", "JUNE",
+  "JULY", "AUG", "SEPT", "OCT", "NOV", "DEC"
 ];
 
 // Helper to get next 4 months from today
@@ -83,12 +73,15 @@ export default function Events() {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.map((event) => (
-            <div key={event._id} className="group">
-              <div className="relative aspect-[3/4] overflow-hidden mb-4">
+            <div
+              key={event._id}
+              className="group transform transition duration-300 ease-in-out hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl bg-white rounded-xl p-4"
+            >
+              <div className="relative aspect-[3/4] overflow-hidden mb-4 rounded-lg">
                 <img
                   src={`http://localhost:5000/${event.imgsrc}` || "/placeholder.svg"}
                   alt={event.name}
-                  className="w-full rounded-lg h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                  className="w-full h-full object-cover"
                 />
               </div>
 
@@ -98,6 +91,9 @@ export default function Events() {
                   day: "2-digit",
                   month: "short",
                   year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
                 })}
               </div>
 
@@ -105,7 +101,9 @@ export default function Events() {
 
               <div className="space-y-2">
                 <a href={event.redirection_url} target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-black text-white hover:bg-gray-800">BUY TICKETS</Button>
+                  <Button className="w-full bg-black text-white hover:bg-gray-800">
+                    BUY TICKETS
+                  </Button>
                 </a>
 
                 <Link to="/vip-tables">

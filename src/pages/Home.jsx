@@ -348,6 +348,9 @@
                         day: "2-digit",
                         month: "short",
                         year: "numeric",
+                        hour : "numeric",
+                        minute : "numeric",
+                        hour12 : true,
                       })}
                     </h3>
                     <div className="flex space-x-2">
@@ -371,7 +374,7 @@
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <img
-                        src={`http://localhost:5000/${events[currentEventIndex].imgsrc}` || "/placeholder.svg"}
+                        src={`${import.meta.env.VITE_API_URL}/${events[currentEventIndex].imgsrc}` || "/placeholder.svg"}
                         alt={events[currentEventIndex].name}
                         className="max-w-sm h-[300px] aspect-[3/4] object-cover flex justify-center items-center mx-auto mb-6 rounded-lg shadow-lg"
                       />
@@ -451,7 +454,7 @@
                   <div key={event._id} className="text-center group">
                     <div className="mb-4 aspect-square relative overflow-hidden rounded-lg shadow-lg">
                       <img
-                        src={`http://147.79.70.30::5000/${event.imgsrc}` || "/placeholder.svg"}
+                        src={`${import.meta.env.VITE_API_URL}/${event.imgsrc}` || "/placeholder.svg"}
                         alt={event.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />

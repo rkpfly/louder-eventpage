@@ -17,7 +17,7 @@ export default function Header() {
         <Link to="/" className="z-50">
           <h1 className="text-2xl font-bold tracking-wider">TAMASHA</h1>
         </Link>
-
+    
         <Button variant="ghost" size="sm" onClick={toggleMenu} className="rounded-full bg-muted px-6 py-2 z-50">
           {isMenuOpen ? (
             <X className="h-5 w-5" />

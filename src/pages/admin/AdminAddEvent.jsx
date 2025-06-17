@@ -108,9 +108,9 @@ export default function AdminAddEvent() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">Start Date</Label>
+                <Label className="text-sm font-medium text-gray-700">Start Date & Time</Label>
                 <Input
-                  type="date"
+                  type="datetime-local"
                   name="start_date"
                   value={formData.start_date}
                   onChange={handleChange}
@@ -118,9 +118,9 @@ export default function AdminAddEvent() {
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">End Date</Label>
+                <Label className="text-sm font-medium text-gray-700">End Date & Time</Label>
                 <Input
-                  type="date"
+                  type="datetime-local"
                   name="end_date"
                   value={formData.end_date}
                   onChange={handleChange}
