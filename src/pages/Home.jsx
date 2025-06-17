@@ -1,49 +1,63 @@
   import { useState, useEffect, useRef } from "react"
   import { Link } from "react-router-dom"
   import { Button } from "../components/ui/button"
-  import { ChartNoAxesColumnIcon, ChevronLeft, ChevronRight } from "lucide-react"
+  import { ChevronLeft, ChevronRight } from "lucide-react"
   import { useSelector, useDispatch } from "react-redux"
-  import { fetchEvents } from "../features/event/eventSlice"
-  import OfflinePage from "./OfflinePage"
-  import FullPageLoader from "../components/FullPageLoader"
   import SignupPromo from "../components/SignupPromo"
+  import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "../components/ui/dialog";
+import VipTableModern from "./VipTables"
 
 
-  const musicPlaylists = [
-    {
-      id: 1,
-      title: "House Classics",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX32NsLKyzScr",
-    },
-    {
-      id: 2,
-      title: "Hip Hop Hits",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd",
-    },
-    {
-      id: 3,
-      title: "Electronic Vibes",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX4dyzvuaRJ0n",
-    },
-    {
-      id: 4,
-      title: "Bollywood Beats",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX1vKzOTZ7jRm",
-    },
-    {
-      id: 5,
-      title: "Latin Rhythms",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva",
-    },
-    {
-      id: 6,
-      title: "R&B Classics",
-      embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DWYmmr74INdgF",
-    },
-  ]
+
+const musicPlaylists = [
+  {
+    id: 1,
+    title: "Official Tamasha Playlist",
+    image: "../../public/music4.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DX32NsLKyzScr",
+  },
+  {
+    id: 2,
+    title: "Hip Hop Hits",
+    image: "../../public/music2.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd",
+  },
+  {
+    id: 3,
+    title: "Electronic Vibes",
+    image: "../../public/music3.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DX4dyzvuaRJ0n",
+  },
+  {
+    id: 4,
+    title: "Bollywood Beats",
+    image: "../../public/music4.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DX1vKzOTZ7jRm",
+  },
+  {
+    id: 5,
+    title: "Latin Rhythms",
+    image: "../../public/music5.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DX10zKzsJ2jva",
+  },
+  {
+    id: 6,
+    title: "R&B Classics",
+    image: "../../public/music6.jpg",
+    link: "https://open.spotify.com/playlist/37i9dQZF1DWYmmr74INdgF",
+  },
+];
+
 
 
   export default function Home() {
+    const [showVipModal, setShowVipModal] = useState(false);
     const [scrollText, setScrollText] = useState(
       "TAMASHA CLUB - THE ULTIMATE NIGHTLIFE EXPERIENCE - EVERY SATURDAY NIGHT - ",
     )
@@ -167,7 +181,7 @@
     }
 
     const openReadMore = () => {
-      window.open("/about-club", "_blank")
+      window.open("/events", "_blank")
     }
 
     return (
@@ -240,11 +254,14 @@
                     >
                       Read More
                     </Button>
-                    <Link to="/vip-tables">
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8">
-                        VIP Tables
-                      </Button>
-                    </Link>
+
+                    <Button
+                      onClick={() => setShowVipModal(true)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8"
+                    >
+                      VIP Tables
+                    </Button>
+
                   </div>
                 </div>
               </div>
@@ -541,7 +558,7 @@
             </div>
           </section> */}
 
-          <section className="py-16">
+          {/* <section className="py-16">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center mb-12">
                 <h2 className="text-4xl font-bold">MUSIC</h2>
@@ -591,7 +608,72 @@
                 ))}
               </div>
             </div>
-          </section> 
+          </section>  */}
+
+         <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-between items-center mb-12">
+              <h2 className="text-4xl font-bold">MUSIC</h2>
+              <div className="flex items-center space-x-4">
+                <Link to="/music">
+                  <Button variant="outline" className="border-black hover:bg-black hover:text-white">
+                    SHOW ALL
+                  </Button>
+                </Link>
+                <div className="flex space-x-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={prevMusic}
+                    className="rounded-full border-black hover:bg-black hover:text-white"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={nextMusic}
+                    className="rounded-full border-black hover:bg-black hover:text-white"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {musicPlaylists
+                .slice(currentMusicIndex * 3, (currentMusicIndex + 1) * 3)
+                .map((playlist) => (
+                  <div
+                    key={playlist.id}
+                    className="rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200"
+                  >
+                    <div className="h-64 overflow-hidden">
+                      <img
+                        src={playlist.image}
+                        alt={playlist.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-4 flex flex-col items-center justify-between">
+                      <h3 className="text-xl font-bold text-center mb-4">{playlist.title}</h3>
+                      <a
+                        href={playlist.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full"
+                      >
+                        Listen
+                      </a>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </section>
+
+
 
 
           <section className="w-full flex flex-col justify-center items-center px-6 py-12">
@@ -622,6 +704,16 @@
           </section>
 
           <SignupPromo />
+          
+          <Dialog open={showVipModal} onOpenChange={setShowVipModal}>
+            <DialogContent className="bg-transparent shadow-none max-w-5xl p-0">
+
+              <div className="rounded-xl p-6">
+                <VipTableModern />
+              </div>
+            </DialogContent>
+          </Dialog>
+
         </div>
       
       </>

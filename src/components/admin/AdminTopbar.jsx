@@ -3,6 +3,7 @@ export default function AdminTopbar() {
     localStorage.removeItem("token");
     window.location.href = "/admin/login";
   }
+  
   return (
     <div className="bg-gray-800 text-black p-4 flex justify-between items-center">
       <h1 className="text-xl font-bold">Admin Dashboard</h1>

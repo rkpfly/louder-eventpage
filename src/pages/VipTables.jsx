@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import {
   Select,
@@ -14,22 +12,26 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogFooter,
 } from "../components/ui/dialog";
+import { useSelector } from "react-redux";
 
-export default function VipTables() {
+export default function VipTableModern() {
   const events = useSelector((state) => state.Events.events);
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
     event: "",
     guests: "",
-    message: "",
+    budget: "",
+    name: "",
+    surname: "",
+    email: "",
+    code: "+61",
+    phone: "",
+    date: "",
+    comment: "",
   });
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -45,185 +47,229 @@ export default function VipTables() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const API_URL = import.meta.env.VITE_API_URL;
+
     try {
-      const response = await fetch(`${API_URL}/api/event/vip-table`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/event/add-function-inquiry`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: `${formData.name} ${formData.surname}`,
+            email: formData.email,
+            phone: `${formData.code}${formData.phone}`,
+            eventType: formData.event,
+            date: formData.date,
+            guests: formData.guests,
+            budget: formData.budget,
+            message: formData.comment || '',
+          }),
+        }
+      );
 
       if (response.ok) {
-        console.log("Form submitted:", formData);
         setShowSuccessPopup(true);
         setFormData({
-          name: "",
-          email: "",
-          phone: "",
           event: "",
           guests: "",
-          message: "",
+          budget: "",
+          name: "",
+          surname: "",
+          email: "",
+          code: "+61",
+          phone: "",
+          date: "",
+          comment: "",
         });
       } else {
         const errorData = await response.json();
-        console.error("Error submitting form:", errorData);
+        console.error("Server error:", errorData);
+        alert("Failed to submit the form. Please try again.");
       }
-    } catch (error) {
-      console.error("Network error submitting form:", error);
+    } catch (err) {
+      console.error("Network error:", err);
+      alert("Network error. Please check your connection and try again.");
     }
   };
 
   return (
-    <div className="pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold mb-4">VIP TABLES</h1>
-            <p className="text-lg max-w-2xl mx-auto">
-              Experience Tamasha Club in style with our VIP table service. Enjoy premium seating, bottle service, and
-              dedicated waitstaff for an unforgettable night.
-            </p>
+    <>
+      <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 mt-8 bg-white">
+        {/* Left Image */}
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="VIP Party"
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
+
+        {/* Right Form */}
+        <div className="p-6 md:p-10 flex flex-col justify-between">
+          <div className="mb-6">
+            <h2 className="text-xl md:text-2xl font-semibold mb-2">Request Your Table</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">VIP EXPERIENCE</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Event */}
+            <Select
+              value={formData.event}
+              onValueChange={(val) => handleSelectChange("event", val)}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select event..." />
+              </SelectTrigger>
+              <SelectContent>
+                {events.map(event => (
+                  <SelectItem key={event._id} value={event.name}>{event.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Premium Location</h3>
-                  <p>
-                    Our VIP tables are located in the best areas of the club, offering excellent views of the dance
-                    floor and stage.
-                  </p>
-                </div>
+            {/* Date */}
+            <Input
+              type="datetime-local"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
 
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Bottle Service</h3>
-                  <p>
-                    Enjoy premium spirits and champagne delivered directly to your table, with a selection of mixers and
-                    garnishes.
-                  </p>
-                </div>
+            {/* Guests + Budget */}
+            <div className="grid grid-cols-2 gap-4">
+              <Select
+                value={formData.guests}
+                onValueChange={(val) => handleSelectChange("guests", val)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Number of Guests" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1-10">1-10</SelectItem>
+                  <SelectItem value="11-20">11-20</SelectItem>
+                  <SelectItem value="21-50">21-50</SelectItem>
+                  <SelectItem value="51+">51+</SelectItem>
+                </SelectContent>
+              </Select>
 
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Dedicated Service</h3>
-                  <p>
-                    Your personal server will ensure your glasses are never empty and your experience is seamless
-                    throughout the night.
-                  </p>
-                </div>
+              <Select
+                value={formData.budget}
+                onValueChange={(val) => handleSelectChange("budget", val)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Budget" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="$100-$250">$100 - $250</SelectItem>
+                  <SelectItem value="$251-$500">$251 - $500</SelectItem>
+                  <SelectItem value="$501-$1000">$501 - $1000</SelectItem>
+                  <SelectItem value="$1000+">$1000+</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Express Entry</h3>
-                  <p>Skip the line with priority access to the club for you and your guests.</p>
-                </div>
+            {/* Name + Surname */}
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                placeholder="Surname"
+                name="surname"
+                value={formData.surname}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <Input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+
+            {/* Code + Phone */}
+            <div className="grid grid-cols-3 gap-4">
+              <Select
+                value={formData.code}
+                onValueChange={(val) => handleSelectChange("code", val)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Code" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="+61">+61 (AU)</SelectItem>
+                  <SelectItem value="+91">+91 (IN)</SelectItem>
+                  <SelectItem value="+1">+1 (US)</SelectItem>
+                  <SelectItem value="+65">+65 (SG)</SelectItem>
+                  <SelectItem value="+44">+44 (UK)</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <div className="col-span-2">
+                <Input
+                  placeholder="Phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-bold mb-4">BOOK YOUR TABLE</h2>
+            {/* Comment */}
+            <Textarea
+              placeholder="Comment"
+              name="comment"
+              value={formData.comment}
+              onChange={handleChange}
+              rows={3}
+            />
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
-                </div>
+            {/* Submit */}
+            <div className="pt-4 pb-2 flex flex-row gap-2">
+              <Button
+                type="submit"
+                className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
+              >
+                Request a Table
+              </Button>
+              
+              <Button
+                type="button"
+                className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
+                onClick={() => window.location.href = "/"}
+              >
+              Home
+              </Button>
 
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
-                </div>
-
-                <div>
-                  <Label htmlFor="event">Event</Label>
-                  <Select value={formData.event} onValueChange={(value) => handleSelectChange("event", value)}>
-                    <SelectTrigger id="event">
-                      <SelectValue placeholder="Select event" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {events.map((event) => (
-                        <SelectItem key={event.name} value={event.name}>
-                          {event.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="guests">Number of Guests</Label>
-                  <Select value={formData.guests} onValueChange={(value) => handleSelectChange("guests", value)}>
-                    <SelectTrigger id="guests">
-                      <SelectValue placeholder="Select number of guests" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {[2, 4, 6, 8, 10, 12].map((num) => (
-                        <SelectItem key={num} value={num.toString()}>
-                          {num} guests
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="message">Special Requests</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <p className="text-sm mb-4">
-                    By submitting this form, you agree to our terms and conditions. We'll contact you to confirm your
-                    reservation and discuss payment details.
-                  </p>
-
-                  <Button type="submit" className="w-full bg-black text-white hover:bg-gray-800">
-                    SUBMIT REQUEST
-                  </Button>
-                </div>
-              </form>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
-      {/* Success Popup */}
+      {/* Success Dialog */}
       <Dialog open={showSuccessPopup} onOpenChange={setShowSuccessPopup}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Thank you!</DialogTitle>
-            <DialogDescription>
-              Your VIP table request has been submitted. We'll contact you shortly.
-            </DialogDescription>
+            <DialogTitle>🎉 Submission Successful!</DialogTitle>
           </DialogHeader>
-          <DialogFooter>
-            <Button onClick={() => setShowSuccessPopup(false)} className="bg-black text-white hover:bg-gray-800">
-              Close
-            </Button>
+          <p>Your table request has been received. We’ll contact you shortly.</p>
+          <DialogFooter className="mt-4">
+            <Button onClick={() => setShowSuccessPopup(false)}>Close</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }
