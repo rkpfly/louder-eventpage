@@ -1,178 +1,169 @@
-import { useState } from "react"
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Label } from "../components/ui/label"
-import { Textarea } from "../components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
+import { useState } from "react";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../components/ui/select";
+import { Textarea } from "../components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "../components/ui/dialog";
 
-// Sample job positions
-const positions = [
-  { id: "bartender", title: "Bartender" },
-  { id: "server", title: "Server" },
-  { id: "security", title: "Security Staff" },
-  { id: "dj", title: "DJ" },
-  { id: "manager", title: "Floor Manager" },
-  { id: "marketing", title: "Marketing Specialist" },
-  { id: "other", title: "Other" },
-]
+const roles = [
+  { value: "bartender", label: "Bartender" },
+  { value: "server", label: "Server" },
+  { value: "dj", label: "DJ" },
+  { value: "security", label: "Security Staff" },
+  { value: "hostess", label: "Hostess" },
+  { value: "other", label: "Other" },
+];
 
 export default function Careers() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    firstName: "",
+    lastName: "",
     phone: "",
-    position: "",
-    experience: "",
-    message: "",
-    resume: null,
-  })
+    email: "",
+    dob: "",
+    social: "",
+    role: "",
+  });
+
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handleSelectChange = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData((prev) => ({ ...prev, resume: e.target.files[0] }))
-    }
-  }
+  const handleSelectChange = (value) => {
+    setFormData((prev) => ({ ...prev, role: value }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData)
-    alert("Your application has been submitted. We'll review it and contact you if there's a match.")
-  }
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    setShowSuccessPopup(true);
+  };
 
   return (
-    <div className="pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center">CAREERS</h1>
+    <>
+      <h1 className="text-4xl font-bold text-center ">CAREER</h1>
+      <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 mt-8 bg-white">
+        {/* Left Image */}
+        <div>
+          <img
+            src="../../career-img.jpg"
+            alt="Join Us"
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
 
-          <div className="mb-12">
-            <p className="text-lg mb-4">
-              Join the Tamasha Club team and be part of creating unforgettable experiences for our guests. We're always
-              looking for passionate, talented individuals who thrive in a dynamic environment and are committed to
-              excellence.
-            </p>
-            <p className="text-lg">
-              Whether you're an experienced hospitality professional or just starting your career, we offer exciting
-              opportunities to grow and develop your skills in a vibrant setting.
-            </p>
-          </div>
+        {/* Right Form */}
+        <div className="p-6 md:p-10 flex flex-col justify-between">
+          <h1 className="text-4xl md:text-2xl font-semibold ">Join the Team</h1>
+          <h2 className="text-xl md:text-1xl mb-6">Be part of an energetic, passionate team that lives for unforgettable nights.</h2>
 
-          <div className="bg-black text-white p-8 mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">CURRENT OPENINGS</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-white p-4">
-                <h3 className="font-bold mb-2">Bartenders</h3>
-                <p className="mb-2">Full-time & Part-time positions available</p>
-                <p className="text-sm">Experience required</p>
-              </div>
-
-              <div className="border border-white p-4">
-                <h3 className="font-bold mb-2">Security Staff</h3>
-                <p className="mb-2">Full-time positions</p>
-                <p className="text-sm">SIA license required</p>
-              </div>
-
-              <div className="border border-white p-4">
-                <h3 className="font-bold mb-2">Floor Staff</h3>
-                <p className="mb-2">Part-time positions</p>
-                <p className="text-sm">No experience necessary, training provided</p>
-              </div>
-
-              <div className="border border-white p-4">
-                <h3 className="font-bold mb-2">Marketing Assistant</h3>
-                <p className="mb-2">Full-time position</p>
-                <p className="text-sm">Experience in nightlife marketing preferred</p>
-              </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* First Name + Last Name */}
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                name="firstName"
+                placeholder="First Name *"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                name="lastName"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
             </div>
-          </div>
 
-          <div>
-            <h2 className="text-2xl font-bold mb-6 text-center">APPLICATION FORM</h2>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="name">Full Name</Label>
-                <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
-              </div>
-
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
-              </div>
-
-              <div>
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
-              </div>
-
-              <div>
-                <Label htmlFor="position">Position</Label>
-                <Select value={formData.position} onValueChange={(value) => handleSelectChange("position", value)}>
-                  <SelectTrigger id="position">
-                    <SelectValue placeholder="Select position" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {positions.map((position) => (
-                      <SelectItem key={position.id} value={position.id}>
-                        {position.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="experience">Years of Experience</Label>
-                <Select value={formData.experience} onValueChange={(value) => handleSelectChange("experience", value)}>
-                  <SelectTrigger id="experience">
-                    <SelectValue placeholder="Select experience" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="0-1">0-1 years</SelectItem>
-                    <SelectItem value="1-3">1-3 years</SelectItem>
-                    <SelectItem value="3-5">3-5 years</SelectItem>
-                    <SelectItem value="5+">5+ years</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="message">Cover Letter / Additional Information</Label>
-                <Textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} />
-              </div>
-
-              <div>
-                <Label htmlFor="resume">Resume/CV (PDF format)</Label>
+            {/* Phone */}
+            <div className="grid grid-cols-3 gap-4">
+              <Input value="+91" readOnly className="bg-gray-100 cursor-not-allowed" />
+              <div className="col-span-2">
                 <Input
-                  id="resume"
-                  name="resume"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  required
+                  name="phone"
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                 />
               </div>
+            </div>
 
-              <div className="pt-2">
-                <Button type="submit" className="w-full bg-black text-white hover:bg-gray-800">
-                  SUBMIT APPLICATION
-                </Button>
-              </div>
-            </form>
-          </div>
+            {/* Email */}
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+
+        
+
+            {/* Social Link */}
+            <Input
+              name="social"
+              placeholder="Facebook/Instagram Link"
+              value={formData.social}
+              onChange={handleChange}
+            />
+
+            {/* Role */}
+            <Select value={formData.role} onValueChange={handleSelectChange}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Role" />
+              </SelectTrigger>
+              <SelectContent>
+                {roles.map((role) => (
+                  <SelectItem key={role.value} value={role.value}>
+                    {role.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Submit */}
+            <div className="pt-4 pb-2 flex flex-row gap-2">
+              <Button
+                type="submit"
+                className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
+              >
+                Submit Application
+              </Button>
+
+              <Button
+                type="button"
+                className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
+                onClick={() => window.location.href = "/"}
+              >
+                Close
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-  )
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccessPopup} onOpenChange={setShowSuccessPopup}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>🎉 Application Submitted!</DialogTitle>
+          </DialogHeader>
+          <p>We’ve received your details. Our team will be in touch if there's a match.</p>
+          <DialogFooter className="mt-4">
+            <Button onClick={() => setShowSuccessPopup(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }

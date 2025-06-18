@@ -63,6 +63,11 @@ export default function Header() {
           <Link to="/offers" className="hover:text-gray-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
             OFFERS
           </Link>
+          <Link to="/news" className="hover:text-gray-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+            NEWS
+          </Link>
+          
+
         </nav>
       </div>
     </header>

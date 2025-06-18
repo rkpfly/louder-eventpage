@@ -66,7 +66,7 @@ export default function AdminEditSingleEvent() {
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
           console.error("Error updating event:", errorData);
-          alert("Error updating event.");
+          alert("Error updating event. Token expired, login again.");
         } else {
           const text = await response.text();
           console.error("Error updating event (non-JSON):", text);

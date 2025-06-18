@@ -36,7 +36,7 @@ import RequireAdminAuth from './components/admin/RequireAdminAuth'
 import AdminEditSingleEvent from './pages/admin/AdminEditSingleEvent'
 import AdminAddAdmin from './pages/admin/AdminAddAdmin'
 import NotFound from './pages/NotFound'
-import CardComponent from './components/CardComponent';
+import NewsSection from './pages/NewsSection';
 
 function App() {
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ function App() {
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="venue" element={<Venue />} />
             <Route path="vip-tables" element={<VipTables />} />
-            <Route path="test" element={<CardComponent />} />
+            <Route path="news" element={<NewsSection />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>

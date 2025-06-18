@@ -11,7 +11,7 @@
   DialogTitle,
   DialogFooter,
 } from "../components/ui/dialog";
-import VipTableModern from "./VipTables"
+import VipTableModern from "./VipTablesForm"
 
 
 
@@ -19,37 +19,37 @@ const musicPlaylists = [
   {
     id: 1,
     title: "Official Tamasha Playlist",
-    image: "../../public/music4.jpg",
+    image: "../../music4.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DX32NsLKyzScr",
   },
   {
     id: 2,
     title: "Hip Hop Hits",
-    image: "../../public/music2.jpg",
+    image: "../../music2.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd",
   },
   {
     id: 3,
     title: "Electronic Vibes",
-    image: "../../public/music3.jpg",
+    image: "../../music3.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DX4dyzvuaRJ0n",
   },
   {
     id: 4,
     title: "Bollywood Beats",
-    image: "../../public/music4.jpg",
+    image: "../../music4.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DX1vKzOTZ7jRm",
   },
   {
     id: 5,
     title: "Latin Rhythms",
-    image: "../../public/music5.jpg",
+    image: "../../music5.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DX10zKzsJ2jva",
   },
   {
     id: 6,
     title: "R&B Classics",
-    image: "../../public/music6.jpg",
+    image: "../../music6.jpg",
     link: "https://open.spotify.com/playlist/37i9dQZF1DWYmmr74INdgF",
   },
 ];
@@ -346,7 +346,7 @@ const musicPlaylists = [
           </section>  */}
 
           {/* Upcoming events */}
-          <section ref={ticketsRef} className="py-12 text-black">
+          {/* <section ref={ticketsRef} className="py-12 text-black">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12">UPCOMING EVENTS</h2>
 
@@ -423,7 +423,7 @@ const musicPlaylists = [
                 </div>
               )}
             </div>
-          </section>
+          </section> */}
 
 
 
@@ -468,7 +468,7 @@ const musicPlaylists = [
             ) :
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {events.slice(currentAllEventIndex * 4, (currentAllEventIndex + 1) * 4).map((event) => (
-                  <div key={event._id} className="text-center group">
+                  <div key={event._id} className="text-center group shadow-lg rounded-lg p-4">
                     <div className="mb-4 aspect-square relative overflow-hidden rounded-lg shadow-lg">
                       <img
                         src={`${import.meta.env.VITE_API_URL}/${event.imgsrc}` || "/placeholder.svg"}
@@ -653,7 +653,7 @@ const musicPlaylists = [
                       <img
                         src={playlist.image}
                         alt={playlist.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
                     <div className="p-4 flex flex-col items-center justify-between">
@@ -707,8 +707,7 @@ const musicPlaylists = [
           
           <Dialog open={showVipModal} onOpenChange={setShowVipModal}>
             <DialogContent className="bg-transparent shadow-none max-w-5xl p-0">
-
-              <div className="rounded-xl p-6">
+              <div className="">
                 <VipTableModern />
               </div>
             </DialogContent>

@@ -1,14 +1,14 @@
 export default function Venue() {
   return (
-    <div className="pt-24 pb-16">
+    <div className="pb-16">
       <div className="container mx-auto px-4">
         <section className="mb-16">
-          <h1 className="text-4xl font-bold mb-8 text-center">TAMASHA CLUB</h1>
 
           <div className="aspect-video relative mb-8">
-            <img src="/placeholder.svg" alt="Tamasha Club Main Area" className="w-full h-full object-cover" />
+            <img src="venue-bg.jpg" alt="Tamasha Club Main Area" className="w-full h-full object-cover rounded-lg" />
           </div>
 
+          <h1 className="text-4xl font-bold mb-8 text-center">TAMASHA CLUB</h1>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg mb-4">
               Tamasha Club is the ultimate nightlife destination, offering an unparalleled experience in the heart of
@@ -25,17 +25,17 @@ export default function Venue() {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">MAIN FLOOR</h2>
+          <h2 className="text-2xl font-semibold mb-8 text-center">MAIN FLOOR</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="Main Floor View 1" className="w-full h-full object-cover" />
+              <img src="venue1.jpg" alt="Main Floor View 1" className="w-full h-full object-cover" />
             </div>
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="Main Floor View 2" className="w-full h-full object-cover" />
+              <img src="venue2.jpg" alt="Main Floor View 2" className="w-full h-full object-cover" />
             </div>
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="Main Floor View 3" className="w-full h-full object-cover" />
+              <img src="venue3.jpg" alt="Main Floor View 3" className="w-full h-full object-cover" />
             </div>
           </div>
 
@@ -50,17 +50,17 @@ export default function Venue() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">VIP LOUNGE</h2>
+          <h2 className="text-2xl font-semibold mb-8 text-center">VIP LOUNGE</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="VIP Lounge View 1" className="w-full h-full object-cover" />
+              <img src="venue4.jpg" alt="VIP Lounge View 1" className="w-full h-full object-cover" />
             </div>
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="VIP Lounge View 2" className="w-full h-full object-cover" />
+              <img src="venue5.jpg" alt="VIP Lounge View 2" className="w-full h-full object-cover" />
             </div>
             <div className="aspect-square relative">
-              <img src="/placeholder.svg" alt="VIP Lounge View 3" className="w-full h-full object-cover" />
+              <img src="venue6.jpg" alt="VIP Lounge View 3" className="w-full h-full object-cover" />
             </div>
           </div>
 

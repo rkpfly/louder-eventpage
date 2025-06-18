@@ -1,17 +1,17 @@
 // Sample gallery images - in a real app, these would come from an API or CMS
 const galleryImages = [
-  { id: 1, src: "../public/tamasha_pic/pics.jpg", alt: "Club interior" },
-  { id: 2, src: "../public/tamasha_pic/pics2.jpg", alt: "DJ booth" },
-  { id: 3, src: "../public/tamasha_pic/pics3.jpg", alt: "Dance floor" },
-  { id: 4, src: "../public/tamasha_pic/pics4.jpg", alt: "VIP area" },
-  { id: 5, src: "../public/tamasha_pic/pics5.jpg", alt: "Bar area" },
-  { id: 6, src: "../public/tamasha_pic/pics6.jpg", alt: "Crowd enjoying the night" },
-  { id: 7, src: "../public/tamasha_pic/pics7.jpg", alt: "Light show" },
-  { id: 8, src: "../public/tamasha_pic/pics8.jpg", alt: "Special event" },
-  { id: 9, src: "../public/tamasha_pic/pics9.jpg", alt: "Club entrance" },
-  { id: 10, src: "../public/tamasha_pic/pics10.jpg", alt: "Bottle service" },
- ,
-]
+  { id: 1, src: "../tamasha_pic/pics.jpg", alt: "Club interior" },
+  { id: 2, src: "../tamasha_pic/pics2.jpg", alt: "DJ booth" },
+  { id: 3, src: "../tamasha_pic/pics3.jpg", alt: "Dance floor" },
+  { id: 4, src: "../tamasha_pic/pics4.jpg", alt: "VIP area" },
+  { id: 5, src: "../tamasha_pic/pics5.jpg", alt: "Bar area" },
+  { id: 6, src: "../tamasha_pic/pics6.jpg", alt: "Crowd enjoying the night" },
+  { id: 7, src: "../tamasha_pic/pics7.jpg", alt: "Light show" },
+  { id: 8, src: "../tamasha_pic/pics8.jpg", alt: "Special event" },
+  { id: 9, src: "../tamasha_pic/pics9.jpg", alt: "Club entrance" },
+  { id: 10, src: "../tamasha_pic/pics10.jpg", alt: "Bottle service" },
+  ,
+];
 
 export default function Gallery() {
   return (
@@ -21,7 +21,10 @@ export default function Gallery() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {galleryImages.map((image) => (
-            <div key={image.id} className="aspect-square relative overflow-hidden group rounded-lg">
+            <div
+              key={image.id}
+              className="aspect-square relative overflow-hidden group rounded-lg"
+            >
               <img
                 src={image.src || "/placeholder.svg"}
                 alt={image.alt}
@@ -32,5 +35,5 @@ export default function Gallery() {
         </div>
       </div>
     </div>
-  )
+  );
 }

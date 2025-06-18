@@ -18,9 +18,9 @@ import {
 } from "../components/ui/dialog";
 import { useSelector } from "react-redux";
 
-export default function TableRequestForm() {
+export default function   VipTablesForm() {
   const events = useSelector((state) => state.Events.events);
-  
+
   const [formData, setFormData] = useState({
     event: "",
     guests: "",
@@ -50,7 +50,7 @@ export default function TableRequestForm() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/event/add-function-inquiry`,
+        `${import.meta.env.VITE_API_URL}/api/event/vip-table`,
         {
           method: "POST",
           headers: {
@@ -109,7 +109,7 @@ export default function TableRequestForm() {
         {/* Right Form */}
         <div className="p-6 md:p-10 flex flex-col justify-between">
           <div className="mb-6">
-            <h2 className="text-xl md:text-2xl font-semibold mb-2">Request Your Function</h2>
+            <h2 className="text-xl md:text-2xl font-semibold mb-2">Request Your Table</h2>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,10 +122,9 @@ export default function TableRequestForm() {
                 <SelectValue placeholder="Select event..." />
               </SelectTrigger>
               <SelectContent>
-                {events.map(event => {
-                  return <SelectItem key={event.name} value={event.name}>{event.name}</SelectItem>
-                })}
-                
+                {events.map(event => (
+                  <SelectItem key={event._id} value={event.name}>{event.name}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
 
@@ -185,7 +184,7 @@ export default function TableRequestForm() {
                 name="surname"
                 value={formData.surname}
                 onChange={handleChange}
-                required
+                
               />
             </div>
 
@@ -238,13 +237,22 @@ export default function TableRequestForm() {
             />
 
             {/* Submit */}
-            <div className="pt-4 pb-2">
+            <div className="pt-4 pb-2 flex flex-row gap-2">
               <Button
                 type="submit"
                 className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
               >
                 Request a Table
               </Button>
+              
+              <Button
+                type="button"
+                className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
+                onClick={() => window.location.href = "/"}
+              >
+              Close
+              </Button>
+
             </div>
           </form>
         </div>

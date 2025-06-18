@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils" // assuming you use className utils from ShadCN
 
 const navLinks = [
-  { label: "Dashboard", to: "/admin/dashboard" },
+  { label: "Events Dashboard", to: "/admin/dashboard" },
   { label: "Add Event", to: "/admin/add-event" },
     { label: "Add Another Admin", to: "/admin/add-admin" },
 ]

@@ -69,7 +69,7 @@ export default function SignupPromo() {
           {/* Left Image */}
           <div className=" md:h-auto md:w-1/2 overflow-hidden">
             <img
-              src="../../public/sub-img.png"
+              src="../../sub-img.png"
               alt="Join Now"
               className="rounded-lg w-auto "
               
@@ -98,7 +98,7 @@ export default function SignupPromo() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
+                  
                 />
               </div>
 
