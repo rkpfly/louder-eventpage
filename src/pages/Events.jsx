@@ -101,7 +101,7 @@ export default function Events() {
                 >
                   <div className="relative aspect-[3/4] overflow-hidden mb-4 rounded-lg">
                     <img
-                      src={`http://localhost:5000/${event.imgsrc}` || "/placeholder.svg"}
+                      src={`${import.meta.env.VITE_API_URL}/${event.imgsrc}` || "/placeholder.svg"}
                       alt={event.name}
                       className="w-full h-full object-cover"
                     />

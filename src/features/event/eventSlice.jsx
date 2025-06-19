@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 const API_URL = import.meta.env.VITE_API_URL;
+
+
 // Thunk for fetching events
 export const fetchEvents = createAsyncThunk(
     'events/fetchEvents',

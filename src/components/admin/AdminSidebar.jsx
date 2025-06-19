@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils" // assuming you use className utils from ShadCN
 const navLinks = [
   { label: "Events Dashboard", to: "/admin/dashboard" },
   { label: "Add Event", to: "/admin/add-event" },
-    { label: "Add Another Admin", to: "/admin/add-admin" },
+  { label: "Add Another Admin", to: "/admin/add-admin" },
+  { label : "add Offer", to: "/admin/add-offer" },
+
 ]
 
 export default function AdminSidebar() {

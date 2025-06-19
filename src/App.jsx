@@ -37,6 +37,10 @@ import AdminEditSingleEvent from './pages/admin/AdminEditSingleEvent'
 import AdminAddAdmin from './pages/admin/AdminAddAdmin'
 import NotFound from './pages/NotFound'
 import NewsSection from './pages/NewsSection';
+import Offerlist from './pages/Offerlist';
+import AdminCreateOffer from './pages/admin/AdminCreateOffer';
+import { fetchOffers } from './features/offers/offerSlice';
+import OfferDetailsPage from './pages/OfferDetailsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,7 +48,9 @@ function App() {
   const offline = useSelector(state => state.Events.offline);
 
   useEffect(() => {
-    dispatch(fetchEvents());  // FIXED: this was missing ()
+    dispatch(fetchEvents());
+    dispatch(fetchOffers());
+
   }, [dispatch]);
 
   if (offline) {
@@ -74,13 +80,16 @@ function App() {
             <Route path="functions" element={<Functions />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="music" element={<Music />} />
-            <Route path="offers" element={<Offers />} />
+            <Route path="offers" element={<Offerlist />} />
+            <Route path="offers/:id" element={<OfferDetailsPage />} /> 
             <Route path="residents" element={<Residents />} />
             <Route path="special-events" element={<SpecialEvents />} />
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="venue" element={<Venue />} />
             <Route path="vip-tables" element={<VipTables />} />
             <Route path="news" element={<NewsSection />} />
+
+            <Route path="test" element={<></>} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>
@@ -92,6 +101,7 @@ function App() {
               <Route path="add-admin" element={<AdminAddAdmin />} />
               <Route path="edit-event/:id" element={<AdminEditSingleEvent />} />
               <Route path="add-event" element={<AdminAddEvent />} />
+              <Route path="add-offer" element={<AdminCreateOffer />} />
             </Route>
           </Route>
 

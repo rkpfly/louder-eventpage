@@ -106,7 +106,7 @@ export default function AdminEditSingleEvent() {
               <div className="space-y-2">
                 <Label>Start Date</Label>
                 <Input
-                  type="date"
+                  type="datetime-local"
                   value={eventData.start_date.slice(0, 10)}
                   onChange={(e) =>
                     setEventData({ ...eventData, start_date: e.target.value })
@@ -116,7 +116,7 @@ export default function AdminEditSingleEvent() {
               <div className="space-y-2">
                 <Label>End Date</Label>
                 <Input
-                  type="date"
+                  type="datetime-local"
                   value={eventData.end_date.slice(0, 10)}
                   onChange={(e) =>
                     setEventData({ ...eventData, end_date: e.target.value })

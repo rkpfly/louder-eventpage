@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 
 export default function TableRequestForm() {
   const events = useSelector((state) => state.Events.events);
-  
+
   const [formData, setFormData] = useState({
     event: "",
     guests: "",
@@ -96,8 +96,37 @@ export default function TableRequestForm() {
 
   return (
     <>
-      <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 mt-8 bg-white">
-        {/* Left Image */}
+      <div className="pb-16">
+        <div className="container mx-auto px-4 pt-8">
+          {/* Hero Image */}
+          <img
+            src="functions.jpg"
+            alt="Function Background"
+            className="inset-0 w-full h-full object-cover mb-12 rounded-lg"
+          />
+
+          {/* Headings */}
+          <div className="text-center">
+            <h1 className="text-4xl font-bold">FUNCTION BOOKING</h1>
+            <h1 className="text-2xl font-bold mb-8">LET’S CELEBRATE</h1>
+          </div>
+
+          {/* Intro Content */}
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-lg text-gray-800">
+              Planning a private party, birthday bash, engagement, or any other celebration?
+              We’ve got the perfect venue and vibes for your function.
+            </p>
+            <p className="mt-4 text-md text-gray-700">
+              Fill out the form below and our team will get back to you with date availability,
+              venue options, and everything you need to create an unforgettable event.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 bg-white">
+        {/* Left Image - DO NOT CHANGE */}
         <div>
           <img
             src="https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -122,10 +151,11 @@ export default function TableRequestForm() {
                 <SelectValue placeholder="Select event..." />
               </SelectTrigger>
               <SelectContent>
-                {events.map(event => {
-                  return <SelectItem key={event.name} value={event.name}>{event.name}</SelectItem>
-                })}
-                
+                {events.map(event => (
+                  <SelectItem key={event.name} value={event.name}>
+                    {event.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
 
@@ -230,7 +260,7 @@ export default function TableRequestForm() {
 
             {/* Comment */}
             <Textarea
-              placeholder="Comment"
+              placeholder="Tell us more about your function..."
               name="comment"
               value={formData.comment}
               onChange={handleChange}
@@ -243,7 +273,7 @@ export default function TableRequestForm() {
                 type="submit"
                 className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
               >
-                Request a Table
+                Submit Inquiry
               </Button>
             </div>
           </form>
@@ -256,7 +286,7 @@ export default function TableRequestForm() {
           <DialogHeader>
             <DialogTitle>🎉 Submission Successful!</DialogTitle>
           </DialogHeader>
-          <p>Your table request has been received. We’ll contact you shortly.</p>
+          <p>Your function request has been received. Our team will contact you shortly.</p>
           <DialogFooter className="mt-4">
             <Button onClick={() => setShowSuccessPopup(false)}>Close</Button>
           </DialogFooter>

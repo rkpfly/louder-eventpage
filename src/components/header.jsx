@@ -12,7 +12,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-white">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="z-50">
           <h1 className="text-2xl font-bold tracking-wider">TAMASHA</h1>

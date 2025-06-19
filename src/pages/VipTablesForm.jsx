@@ -18,7 +18,7 @@ import {
 } from "../components/ui/dialog";
 import { useSelector } from "react-redux";
 
-export default function   VipTablesForm() {
+export default function VipTablesForm() {
   const events = useSelector((state) => state.Events.events);
 
   const [formData, setFormData] = useState({
@@ -64,7 +64,7 @@ export default function   VipTablesForm() {
             date: formData.date,
             guests: formData.guests,
             budget: formData.budget,
-            message: formData.comment || '',
+            message: formData.comment || "",
           }),
         }
       );
@@ -117,13 +117,16 @@ export default function   VipTablesForm() {
             <Select
               value={formData.event}
               onValueChange={(val) => handleSelectChange("event", val)}
+              required
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select event..." />
               </SelectTrigger>
               <SelectContent>
-                {events.map(event => (
-                  <SelectItem key={event._id} value={event.name}>{event.name}</SelectItem>
+                {events.map((event) => (
+                  <SelectItem key={event._id} value={event.name}>
+                    {event.name}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -142,6 +145,7 @@ export default function   VipTablesForm() {
               <Select
                 value={formData.guests}
                 onValueChange={(val) => handleSelectChange("guests", val)}
+                required
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Number of Guests" />
@@ -157,6 +161,7 @@ export default function   VipTablesForm() {
               <Select
                 value={formData.budget}
                 onValueChange={(val) => handleSelectChange("budget", val)}
+                required
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select Budget" />
@@ -184,7 +189,6 @@ export default function   VipTablesForm() {
                 name="surname"
                 value={formData.surname}
                 onChange={handleChange}
-                
               />
             </div>
 
@@ -203,6 +207,7 @@ export default function   VipTablesForm() {
               <Select
                 value={formData.code}
                 onValueChange={(val) => handleSelectChange("code", val)}
+                required
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Code" />
@@ -234,6 +239,7 @@ export default function   VipTablesForm() {
               value={formData.comment}
               onChange={handleChange}
               rows={3}
+              required
             />
 
             {/* Submit */}
@@ -244,15 +250,14 @@ export default function   VipTablesForm() {
               >
                 Request a Table
               </Button>
-              
+
               <Button
                 type="button"
                 className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
                 onClick={() => window.location.href = "/"}
               >
-              Close
+                Close
               </Button>
-
             </div>
           </form>
         </div>
