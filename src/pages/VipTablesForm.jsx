@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
+import COUNTRY_CODES from "../lib/COUNTRY_CODES.json"
 import {
   Select,
   SelectContent,
@@ -41,9 +42,10 @@ export default function VipTablesForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSelectChange = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleSelectChange = (field, value) => {
+  setFormData((prev) => ({ ...prev, [field]: value }));
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -212,13 +214,18 @@ export default function VipTablesForm() {
                 <SelectTrigger>
                   <SelectValue placeholder="Code" />
                 </SelectTrigger>
+
                 <SelectContent>
-                  <SelectItem value="+61">+61 (AU)</SelectItem>
-                  <SelectItem value="+91">+91 (IN)</SelectItem>
-                  <SelectItem value="+1">+1 (US)</SelectItem>
-                  <SelectItem value="+65">+65 (SG)</SelectItem>
-                  <SelectItem value="+44">+44 (UK)</SelectItem>
+                  <div className="max-h-64 overflow-y-auto">
+                    {COUNTRY_CODES.map((country) => (
+                      <SelectItem key={country.dial_code} value={country.dial_code}>
+                        {country.dial_code} ({country.name})
+                      </SelectItem>
+                    ))}
+                  </div>
                 </SelectContent>
+
+
               </Select>
 
               <div className="col-span-2">

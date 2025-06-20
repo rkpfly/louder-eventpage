@@ -16,9 +16,10 @@ export default function OfferDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const offer = useSelector((state) =>
+  const offer = 
+  useSelector((state) =>
     state.Offers.offers.find((o) => o._id === id)
-  ) || getStaticOffer(id); // fallback for static offers
+  ) 
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -42,7 +43,7 @@ export default function OfferDetailsPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/event/birthday-pass`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/offers/claim-offer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -89,9 +90,14 @@ export default function OfferDetailsPage() {
   return (
     <>
       <h1 className="text-4xl text-center font-bold mt-8 mb-2">{offer?.title || "Special Offer"}</h1>
-      <h2 className="text-2xl text-center mb-6">
-        Fill the form to claim your offer! We’ll contact you ASAP.
-      </h2>
+      <div className="bg-gray-50 max-w-4xl mx-auto my-8 px-6 py-5">
+        <p className="text-gray-700 text-base leading-relaxed text-justify"> 
+          {offer.description || "No description is available for this offer at the moment"}
+        </p>
+      </div>
+
+
+
 
       <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 bg-white">
         {/* Left Image */}
@@ -105,11 +111,12 @@ export default function OfferDetailsPage() {
 
         {/* Right Form */}
         <div className="p-6 md:p-10 flex flex-col justify-between">
-          <div className="mb-4 text-sm text-gray-600">
+          <div className="text-sm text-gray-600">
             <span className="text-red-600 font-medium">* Valid ID & birthdate proof required</span>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+            <span className="pb-4">Fill the form to claim your offer asap!</span>
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div className="grid grid-cols-2 gap-4">
               <Input
@@ -149,14 +156,10 @@ export default function OfferDetailsPage() {
             </div>
 
             {/* DOB & Date of Celebration */}
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                type="date"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                required
-              />
+            <div className=" flex flex-row gap-4">
+              <span className="text-center border rounded-lg p-1 px-4">
+                Date 
+              </span>
               <Input
                 type="date"
                 name="celebrateDate"
@@ -213,21 +216,4 @@ export default function OfferDetailsPage() {
       </Dialog>
     </>
   );
-}
-
-// ✅ Fallback if static offers are needed (optional)
-function getStaticOffer(id) {
-  const staticOffers = [
-    {
-      _id: "static-birthday",
-      title: "Free Birthday Pass + 1 Guest",
-      imgsrc: "/bday.jpg",
-    },
-    {
-      _id: "static-henparty",
-      title: "Free Pass for Hen + 1 Guest",
-      imgsrc: "/hen.jpg",
-    },
-  ];
-  return staticOffers.find((offer) => offer._id === id);
 }

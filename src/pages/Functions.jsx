@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
+import COUNTRY_CODES from "../lib/COUNTRY_CODES.json"
 import {
   Select,
   SelectContent,
@@ -19,7 +20,7 @@ import {
 import { useSelector } from "react-redux";
 
 export default function TableRequestForm() {
-  const events = useSelector((state) => state.Events.events);
+  //const events = useSelector((state) => state.Events.events);
 
   const [formData, setFormData] = useState({
     event: "",
@@ -143,7 +144,7 @@ export default function TableRequestForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Event */}
-            <Select
+            {/* <Select
               value={formData.event}
               onValueChange={(val) => handleSelectChange("event", val)}
             >
@@ -157,16 +158,23 @@ export default function TableRequestForm() {
                   </SelectItem>
                 ))}
               </SelectContent>
-            </Select>
+            </Select> */}
 
             {/* Date */}
-            <Input
+            <div className="flex gap-4">
+              <span className="text-center rounded-lg border px-4 py-1">
+                <p>Date</p>
+              </span>
+
+              <Input
               type="datetime-local"
               name="date"
               value={formData.date}
               onChange={handleChange}
               required
             />
+            </div>
+            
 
             {/* Guests + Budget */}
             <div className="grid grid-cols-2 gap-4">
@@ -239,11 +247,13 @@ export default function TableRequestForm() {
                   <SelectValue placeholder="Code" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="+61">+61 (AU)</SelectItem>
-                  <SelectItem value="+91">+91 (IN)</SelectItem>
-                  <SelectItem value="+1">+1 (US)</SelectItem>
-                  <SelectItem value="+65">+65 (SG)</SelectItem>
-                  <SelectItem value="+44">+44 (UK)</SelectItem>
+                  <div className="max-h-64 overflow-y-auto">
+                    {COUNTRY_CODES.map((country) => (
+                      <SelectItem key={country.dial_code} value={country.dial_code}>
+                        {country.dial_code} ({country.name})
+                      </SelectItem>
+                    ))}
+                  </div>
                 </SelectContent>
               </Select>
 

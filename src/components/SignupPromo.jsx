@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "../components/ui/dialog";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../components/ui/select";
+import COUNTRY_CODES from '../lib/COUNTRY_CODES.json'
 
 export default function SignupPromo() {
   const [formData, setFormData] = useState({
@@ -116,12 +117,14 @@ export default function SignupPromo() {
                   <SelectTrigger>
                     <SelectValue placeholder="Code" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="+61">+61 (AU)</SelectItem>
-                    <SelectItem value="+91">+91 (IN)</SelectItem>
-                    <SelectItem value="+1">+1 (US)</SelectItem>
-                    <SelectItem value="+65">+65 (SG)</SelectItem>
-                    <SelectItem value="+44">+44 (UK)</SelectItem>
+                 <SelectContent>
+                    <div className="max-h-64 overflow-y-auto">
+                      {COUNTRY_CODES.map((country) => (
+                        <SelectItem key={country.dial_code} value={country.dial_code}>
+                          {country.dial_code} ({country.name})
+                        </SelectItem>
+                      ))}
+                    </div>
                   </SelectContent>
                 </Select>
 
