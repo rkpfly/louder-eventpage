@@ -51,7 +51,7 @@ export default function AdminCreateOffer() {
       data.append("valid_till", formData.valid_till);
       data.append("status", formData.status);
       if (image) {
-        data.append("image", image); // Backend must accept 'imgsrc' as file field
+        data.append("image", image);
       }
 
       const response = await fetch(`${API_URL}/api/offers/add-offer`, {
@@ -78,6 +78,7 @@ export default function AdminCreateOffer() {
           valid_till: "",
           status: true,
         });
+        
         setImage(null);
       } else {
         const errorText = contentType?.includes("application/json")

@@ -479,19 +479,20 @@ const musicPlaylists = [
                       {/* Overlay with buttons */}
                       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-2">
                         <a href = {`${event.redirection_url}`}>
-                          <Button variant="default" className="w-32 bg-blue-600 hover:bg-blue-700 text-white">
-                            Buy Now
+                          <Button variant="default" className="px-5 w-32 bg-blue-600 hover:bg-blue-700 text-white">
+                            Buy Now!
                           </Button>
                         </a>
 
                         <Link to="/vip-tables">
-                          <Button variant="secondary" className="w-32">
-                            Book a Table
+                          <Button variant="secondary" className="w-32 ">
+                            Book Table
                           </Button>
                         </Link>
                         
                         <a href= {`${event.redirection_url}`} >
-                          <Button variant="default" className="w-32">
+                          
+                          <Button variant="default" className="w-32 px-5">
                             More Info
                           </Button>
                         </a>

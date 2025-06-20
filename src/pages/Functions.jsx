@@ -238,7 +238,7 @@ export default function TableRequestForm() {
             />
 
             {/* Code + Phone */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <Select
                 value={formData.code}
                 onValueChange={(val) => handleSelectChange("code", val)}

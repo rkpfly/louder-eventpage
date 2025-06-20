@@ -22,6 +22,7 @@ export default function OfferDetailsPage() {
   ) 
 
   const [formData, setFormData] = useState({
+    offer_id : id,
     fname: "",
     lname: "",
     email: "",

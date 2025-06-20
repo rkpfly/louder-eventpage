@@ -120,7 +120,7 @@ export default function SignupPromo() {
                  <SelectContent>
                     <div className="max-h-64 overflow-y-auto">
                       {COUNTRY_CODES.map((country) => (
-                        <SelectItem key={country.dial_code} value={country.dial_code}>
+                        <SelectItem key={country.code} value={country.dial_code}>
                           {country.dial_code} ({country.name})
                         </SelectItem>
                       ))}
@@ -149,6 +149,7 @@ export default function SignupPromo() {
               </Button>
             </form>
           </div>
+
         </div>
       </div>
 

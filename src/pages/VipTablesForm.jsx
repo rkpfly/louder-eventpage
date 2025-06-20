@@ -134,13 +134,20 @@ export default function VipTablesForm() {
             </Select>
 
             {/* Date */}
-            <Input
+            <div className="flex justify-between gap-4">
+             <span className="border rounded-lg px-4 pt-1">
+              Date
+             </span>
+
+              <Input
               type="datetime-local"
               name="date"
               value={formData.date}
               onChange={handleChange}
               required
             />
+            </div>
+            
 
             {/* Guests + Budget */}
             <div className="grid grid-cols-2 gap-4">
@@ -205,7 +212,7 @@ export default function VipTablesForm() {
             />
 
             {/* Code + Phone */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <Select
                 value={formData.code}
                 onValueChange={(val) => handleSelectChange("code", val)}
@@ -224,8 +231,6 @@ export default function VipTablesForm() {
                     ))}
                   </div>
                 </SelectContent>
-
-
               </Select>
 
               <div className="col-span-2">
