@@ -107,7 +107,7 @@ export default function AdminEditSingleEvent() {
                 <Label>Start Date</Label>
                 <Input
                   type="datetime-local"
-                  value={eventData.start_date.slice(0, 10)}
+                  value={new Date(eventData.start_date).toISOString().slice(0, 16)}
                   onChange={(e) =>
                     setEventData({ ...eventData, start_date: e.target.value })
                   }
@@ -117,7 +117,7 @@ export default function AdminEditSingleEvent() {
                 <Label>End Date</Label>
                 <Input
                   type="datetime-local"
-                  value={eventData.end_date.slice(0, 10)}
+                  value={new Date(eventData.end_date).toISOString().slice(0, 16)}
                   onChange={(e) =>
                     setEventData({ ...eventData, end_date: e.target.value })
                   }
