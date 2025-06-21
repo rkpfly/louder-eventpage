@@ -32,8 +32,7 @@ const getMonthFromDate = (dateStr) => {
 
 export default function Events() {
   const [filter, setFilter] = useState("ALL");
-  const events = useSelector((state) => state.Events.events);
-
+  const events = useSelector((state) => state.Events.events).filter(event => event.status);
   const next4Months = getNext4Months();
 
   const filteredEvents = events.filter((event) => {
@@ -49,8 +48,7 @@ export default function Events() {
       
       return eventDate >= today;
     }
-
-
+    
     if(filter === "PAST EVENTS"){
       const today = new Date();
       const eventDate = new Date(event.start_date);

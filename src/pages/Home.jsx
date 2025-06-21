@@ -67,7 +67,7 @@ const musicPlaylists = [
     const [currentSpecialEventIndex, setCurrentSpecialEventIndex] = useState(0)
     const [currentMusicIndex, setCurrentMusicIndex] = useState(0)
     const ticketsRef = useRef(null)
-    const events = useSelector(state => state.Events.events);
+    const events = useSelector(state => state.Events.events).filter(event => event.status);
     const offline = useSelector(state => state.Events.offline);
     const loading = useSelector(state => state.Events.loading);
     const error = useSelector(state => state.Events.error);
@@ -486,12 +486,12 @@ const musicPlaylists = [
 
                         <Link to="/vip-tables">
                           <Button variant="secondary" className="w-32 ">
-                            Book Table
+                            Book Table  
                           </Button>
                         </Link>
                         
                         <a href= {`${event.redirection_url}`} >
-                          
+
                           <Button variant="default" className="w-32 px-5">
                             More Info
                           </Button>

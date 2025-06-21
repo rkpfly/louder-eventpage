@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../components/ui/select";
-import { Textarea } from "../components/ui/textarea";
+import COUNTRY_CODES from "../lib/COUNTRY_CODES.json"
 import {
   Dialog,
   DialogContent,
@@ -24,6 +24,7 @@ export default function Careers() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    code : "+61",
     phone: "",
     email: "",
     dob: "",
@@ -42,10 +43,54 @@ export default function Careers() {
     setFormData((prev) => ({ ...prev, role: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleValueChange = (field, val) => {
+    setFormData((prev) => ({...prev, [field]:val}));
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setShowSuccessPopup(true);
+
+    if (!formData.role) {
+      alert("Please select a role.");
+      return;
+    }
+
+
+    // submit career form
+    try{
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/careers/career-form`, {
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json",
+        },
+        
+        body : JSON.stringify({...formData, phone : `${formData.code} ${formData.phone}`}),
+      });
+      
+      if (response.ok){
+        console.log("Form submitted:");
+        setShowSuccessPopup(true);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          code : "+61",
+          phone: "",
+          email: "",
+          dob: "",
+          social: "",
+          role: "",
+        });
+      }
+
+      else{
+        const error = await response.json();
+        console.error("error", error);
+      }
+    }
+
+    catch(err){
+      console.log("submission error", err);
+    }
   };
 
   return (
@@ -72,7 +117,7 @@ export default function Careers() {
             <div className="grid grid-cols-2 gap-4">
               <Input
                 name="firstName"
-                placeholder="First Name *"
+                placeholder="First Name"
                 value={formData.firstName}
                 onChange={handleChange}
                 required
@@ -86,14 +131,37 @@ export default function Careers() {
             </div>
 
             {/* Phone */}
-            <div className="grid grid-cols-3 gap-4">
-              <Input value="+91" readOnly className="bg-gray-100 cursor-not-allowed" />
+            <div className="grid grid-cols-2 gap-4">
+              <Select 
+                value={formData.code}
+                onValueChange={(val) => handleValueChange("code", val)} 
+                className="bg-gray-100 cursor-not-allowed" 
+                required
+              >
+                <SelectTrigger> 
+                  <SelectValue placeholder = "Code" />
+                </SelectTrigger>
+
+                <SelectContent>
+                  <div className="max-h-64 overflow-y-auto">
+                    {COUNTRY_CODES.map(country => 
+                      <SelectItem key = {country.code} value = {country.dial_code}>
+                        {country.dial_code}({country.name})
+                      </SelectItem>
+                    )}
+                  </div>
+                </SelectContent>
+              </Select>
+
+
               <div className="col-span-2">
                 <Input
                   name="phone"
                   placeholder="Phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
+
                 />
               </div>
             </div>
@@ -105,9 +173,24 @@ export default function Careers() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
+              required
+
             />
 
-        
+            <div className="flex gap-4">
+              <span className = "text-center p-1 rounded-lg border px-2">
+              Dob
+              </span>
+              
+              <Input
+              name="dob"
+              type="date"
+              value={formData.dob}
+              onChange={handleChange}
+              required
+            />
+            </div>
+                   
 
             {/* Social Link */}
             <Input
@@ -115,6 +198,7 @@ export default function Careers() {
               placeholder="Facebook/Instagram Link"
               value={formData.social}
               onChange={handleChange}
+              required
             />
 
             {/* Role */}

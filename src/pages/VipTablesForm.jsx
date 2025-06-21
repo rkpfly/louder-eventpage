@@ -20,7 +20,7 @@ import {
 import { useSelector } from "react-redux";
 
 export default function VipTablesForm() {
-  const events = useSelector((state) => state.Events.events);
+  const events = useSelector((state) => state.Events.events).filter(event => event.status);;
 
   const [formData, setFormData] = useState({
     event: "",
@@ -61,7 +61,7 @@ export default function VipTablesForm() {
           body: JSON.stringify({
             name: `${formData.name} ${formData.surname}`,
             email: formData.email,
-            phone: `${formData.code}${formData.phone}`,
+            phone: `${formData.code} ${formData.phone}`,
             eventType: formData.event,
             date: formData.date,
             guests: formData.guests,

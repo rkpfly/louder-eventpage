@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminTopbar from "@/components/admin/AdminTopbar";
@@ -16,38 +16,53 @@ import {
 import { useSelector } from "react-redux";
 
 export default function AdminDashboard() {
-  // const [events, setEvents] = useState([]);
+  const [error, setError] = useState("");
+  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [jwtExpired, setJwtExpired] = useState(false);
+  const navigate = useNavigate();
 
-  // const fetchEvents = async () => {
-  //   try {
-  //     const token = localStorage.getItem("token"); // adjust if using sessionStorage or cookies
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const token = localStorage.getItem("token"); // adjust if using sessionStorage or cookies
 
-  //     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/event/admin-all-events`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         authorization: `${token}`,
-  //       },
-  //     });
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/event/admin-all-events`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `${token}`,
+          },
+        });
 
-  //     if (!res.ok) throw new Error("Failed to fetch events");
+        if (!res.ok){
+          
+          if(res.status === 400){
+            setError("Expired Security Token, login again.");
+            localStorage.removeItem('token');
+            alert('Expired Security Token, login again.')
+            navigate('/admin');
+          }
+          
+          throw new Error("Failed to fetch events");
+        }
 
-  //     const data = await res.json();
-  //     setEvents(data);
-  //   } catch (err) {
-  //     console.error("Error fetching events:", err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+        const data = await res.json();
+        setEvents(data);
+        
+      } catch (err) {
+        console.error("Error fetching events:", err);
+        setError(err);
 
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
+    fetchEvents();
+  }, []);
 
-  const events = useSelector((state) => state.Events.events);
+  // const events = useSelector((state) => state.Events.events);
   const formatDate = (isoDate) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
