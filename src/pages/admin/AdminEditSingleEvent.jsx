@@ -62,6 +62,7 @@ export default function AdminEditSingleEvent() {
         }
 
         alert("Event updated successfully!");
+        window.location.reload();
       } else {
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
