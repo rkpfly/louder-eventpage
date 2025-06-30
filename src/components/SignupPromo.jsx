@@ -65,10 +65,10 @@ export default function SignupPromo() {
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-12 rounded-lg ">
-      <div className="flex">
-        <div className="flex mx-auto items-center justify-center bg-white rounded-xl overflow-hidden shadow-xl border">
+      <div className="flex ">
+        <div className="grid grid-cols-1 md:grid-cols-2 mx-auto items-center justify-center bg-white rounded-lg overflow-hidden shadow-xl border">
           {/* Left Image */}
-          <div className=" md:h-auto md:w-1/2 overflow-hidden">
+          <div className="h-auto sm:w-full mx-auto p-4 md:w-1/2 overflow-hidden">
             <img
               src="../../sub-img.png"
               alt="Join Now"

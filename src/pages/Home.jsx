@@ -253,12 +253,12 @@ const musicPlaylists = [
                       onClick={openReadMore}
                       className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8"
                     >
-                      Read More
+                      Get Tickets!
                     </Button>
 
                     <Button
                       onClick={() => setShowVipModal(true)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8"
+                      className="sm:hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 mob-button"
                     >
                       VIP Tables
                     </Button>
@@ -431,7 +431,7 @@ const musicPlaylists = [
           {/* Events section */}
           <section className="py-12">
             <div className="container mx-auto px-4">
-              <div className="flex justify-between items-center mb-12">
+              <div className="flex flex-wrap justify-between items-center mb-12">
                 <h2 className="text-4xl font-bold">EVENTS</h2>
                 <div className="flex items-center space-x-4">
                   <Link to="/events">
@@ -439,7 +439,7 @@ const musicPlaylists = [
                       SHOW ALL
                     </Button>
                   </Link>
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-2 mob-button">
                     <Button
                       variant="outline"
                       size="icon"
@@ -459,6 +459,8 @@ const musicPlaylists = [
                   </div>
                 </div>
               </div>
+
+              
               
               {/* Event slider */}
               {events.length === 0 ? (
@@ -477,28 +479,33 @@ const musicPlaylists = [
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       {/* Overlay with buttons */}
-                      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-2">
-                        <a href = {`${event.redirection_url}`}>
+                      <div className="absolute inset-0 bg-black bg-opacity-50 hidden sm:flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-2">
+                        <a href={event.redirection_url}>
                           <Button variant="default" className="px-5 w-32 bg-blue-600 hover:bg-blue-700 text-white">
                             Buy Now!
                           </Button>
                         </a>
 
                         <Link to="/vip-tables">
-                          <Button variant="secondary" className="w-32 ">
-                            Book Table  
+                          <Button variant="secondary" className="w-32">
+                            Book Table
                           </Button>
                         </Link>
-                        
-                        <a href= {`${event.redirection_url}`} >
 
+                        <a href={event.redirection_url}>
                           <Button variant="default" className="w-32 px-5">
                             More Info
                           </Button>
                         </a>
                       </div>
+
+                      {/* Mobile-only: full clickable area that redirects to Buy Now */}
+                      <a
+                        href={event.redirection_url}
+                        className="absolute inset-0 block sm:hidden z-10"
+                      />
                     </div>
-                    <h3 className="text-xl font-bold">{event.name}</h3>
+                    <h3 className="md:text-xl font-bold">{event.name}</h3>
                   </div>
                 ))}
               </div>
@@ -614,7 +621,7 @@ const musicPlaylists = [
 
          <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center mb-12">
+            <div className="flex flex-wrap justify-between items-center mb-12">
               <h2 className="text-4xl font-bold">MUSIC</h2>
               <div className="flex items-center space-x-4">
                 <Link to="/music">
@@ -622,7 +629,7 @@ const musicPlaylists = [
                     SHOW ALL
                   </Button>
                 </Link>
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 mob-button">
                   <Button
                     variant="outline"
                     size="icon"
@@ -708,7 +715,7 @@ const musicPlaylists = [
           <SignupPromo />
 
           <Dialog open={showVipModal} onOpenChange={setShowVipModal}>
-            <DialogContent className="bg-transparent shadow-none max-w-5xl p-0">
+            <DialogContent className="bg-transparent shadow-none max-w-5xl p-0 overflow: scroll">
               <div className="">
                 <VipTableModern />
               </div>

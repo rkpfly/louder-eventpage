@@ -95,7 +95,7 @@ export default function Careers() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold text-center ">CAREER</h1>
+      <h1 className="text-4xl font-bold text-center mt-16">CAREER</h1>
       <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 mt-8 bg-white">
         {/* Left Image */}
         <div>

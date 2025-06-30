@@ -126,7 +126,7 @@ export default function TableRequestForm() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto p-8 bg-white">
         {/* Left Image - DO NOT CHANGE */}
         <div>
           <img

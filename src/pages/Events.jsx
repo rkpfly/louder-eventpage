@@ -75,7 +75,7 @@ export default function Events() {
 
         <div className="flex flex-col">
             {/* Filter Bar */}
-            <div className="mx-auto p-4 rounded-full flex justify-center mb-12 flex-wrap gap-4 border">
+            <div className="mx-auto p-4 flex justify-center mb-12 flex-wrap gap-4">
               {["UP NEXT", ...next4Months, "ALL", "PAST EVENTS"].map((item) => (
                 <Button
                   key={item}
@@ -119,7 +119,7 @@ export default function Events() {
 
                   <h3 className="text-xl font-bold mb-4">{event.name}</h3>
 
-                  <div className="flex flex-row gap-4">
+                  <div className="flex flex-row flex-wrap gap-4">
                     <a href={event.redirection_url} target="_blank" rel="noopener noreferrer">
                       <Button className="w-full bg-black text-white hover:bg-gray-800">
                         BUY TICKETS

@@ -14,7 +14,7 @@ export default function AdminSidebar() {
   const location = useLocation()
 
   return (
-    <aside className="w-64 bg-black text-white min-h-screen px-5 py-6 border-r border-gray-800 shadow-md">
+    <aside className="w-64 bg-black text-white min-h-screen px-5 py-6 border-r border-gray-800 shadow-md ">
       <div className="text-3xl font-extrabold tracking-tight mb-8 text-white">
         Admin Panel
       </div>

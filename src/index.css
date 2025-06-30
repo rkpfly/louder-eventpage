@@ -103,8 +103,11 @@
     }
 
 
-.sticky {
-  position: sticky;
-}
+
+  @media (max-width: 640px) {
+    .mob-button {
+      display : none;
+    }
+  }
 
 
