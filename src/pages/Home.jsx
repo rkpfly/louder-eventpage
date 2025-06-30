@@ -715,7 +715,7 @@ const musicPlaylists = [
           <SignupPromo />
 
           <Dialog open={showVipModal} onOpenChange={setShowVipModal}>
-            <DialogContent className="bg-transparent shadow-none max-w-5xl p-0 overflow: scroll">
+            <DialogContent className="bg-white shadow-none max-w-4xl p-0 overflow: scroll">
               <div className="">
                 <VipTableModern />
               </div>

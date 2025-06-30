@@ -263,13 +263,13 @@ export default function VipTablesForm() {
                 Request a Table
               </Button>
 
-              <Button
+              {/* <Button
                 type="button"
                 className="w-full text-white bg-black hover:bg-gray-800 rounded-full"
                 onClick={() => window.location.href = "/"}
               >
                 Close
-              </Button>
+              </Button> */}
             </div>
           </form>
         </div>
