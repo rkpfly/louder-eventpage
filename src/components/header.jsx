@@ -14,8 +14,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="z-50">
+        <Link to="/" className="z-50 flex gap-4">
+          <img src="../../public/fevicon.png" alt="Tamasha logo" className="h-6 mt-1"/>
           <h1 className="text-2xl font-bold tracking-wider">TAMASHA</h1>
+          
         </Link>
     
         <Button variant="ghost" size="sm" onClick={toggleMenu} className="rounded-full bg-muted px-6 py-2 z-50">

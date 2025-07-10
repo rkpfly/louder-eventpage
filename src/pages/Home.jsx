@@ -91,7 +91,7 @@ const musicPlaylists = [
     useEffect(() => {
       if(!loading)
       {
-      const words = ["TAMASHA", "NIGHTS", "MUSIC", "DANCE", "VIBES"];
+      const words = ["TAMASHA", "HOME", "AWAY", "FROM", "HOME"];
       const container = document.getElementById("animator");
 
       let currentWordIndex = 0;
@@ -187,7 +187,6 @@ const musicPlaylists = [
 
     return (
       <>
-      
         <div className="pt-12">
           <div>
 
@@ -225,21 +224,6 @@ const musicPlaylists = [
 
           {/* hero page section */}
             <section className="h-screen flex flex-col justify-center items-center relative overflow-hidden">
-
-              {/* Video Background */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="/vid1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              {/* Overlay (optional — darkens video so text is readable) */}
-              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
               {/* Word Animator */}
               <div className="relative z-10 word-animator" id="animator"></div>
@@ -429,7 +413,7 @@ const musicPlaylists = [
 
 
           {/* Events section */}
-          <section className="py-12">
+          <section className="py-12 ">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap justify-between items-center mb-12">
                 <h2 className="text-4xl font-bold">EVENTS</h2>
@@ -468,7 +452,7 @@ const musicPlaylists = [
               <div className="text-center py-12 text-2xl font-semibold">
                 No events right now! Stay tuned!
               </div>
-            ) :
+            ) : (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {events.slice(currentAllEventIndex * 4, (currentAllEventIndex + 1) * 4).map((event) => (
                   <div key={event._id} className="text-center group shadow-lg rounded-lg p-4">
@@ -509,7 +493,11 @@ const musicPlaylists = [
                   </div>
                 ))}
               </div>
-              }
+
+                
+
+
+              )}
             </div>
           </section>
 

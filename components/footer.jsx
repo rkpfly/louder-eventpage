@@ -35,7 +35,7 @@ export default function Footer() {
                 <Twitter className="h-6 w-6" />
                 <span className="sr-only">X</span>
               </a>
-              <a href="https://facebook.com" className="hover:text-gray-400" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/TixMojoOfficial" className="hover:text-gray-400" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-6 w-6" />
                 <span className="sr-only">Facebook</span>
               </a>

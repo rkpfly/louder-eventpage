@@ -39,6 +39,7 @@ import Offerlist from './pages/Offerlist';
 import AdminCreateOffer from './pages/admin/AdminCreateOffer';
 import { fetchOffers } from './features/offers/offerSlice';
 import OfferDetailsPage from './pages/OfferDetailsPage';
+import NewsItem from './pages/NewsItem';
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ function App() {
             <Route path="venue" element={<Venue />} />
             <Route path="vip-tables" element={<VipTables />} />
             <Route path="news" element={<NewsSection />} />
+            <Route path="newspage" element={<NewsItem />} />
 
             <Route path="test" element={<></>} />
           </Route>

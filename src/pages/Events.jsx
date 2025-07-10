@@ -135,11 +135,11 @@ export default function Events() {
                       </Button>
                     </Link>
 
-                    <a href={event.redirection_url} target="_blank" rel="noopener noreferrer">
+                    {/* <a href={event.redirection_url} target="_blank" rel="noopener noreferrer">
                       <Button variant="ghost" className="w-full hover:bg-gray-100">
                         FIND OUT MORE
                       </Button>
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               ))}

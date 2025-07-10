@@ -116,7 +116,7 @@ export default function VipTablesForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Event */}
-            <Select
+            {/* <Select
               value={formData.event}
               onValueChange={(val) => handleSelectChange("event", val)}
               required
@@ -131,8 +131,11 @@ export default function VipTablesForm() {
                   </SelectItem>
                 ))}
               </SelectContent>
-            </Select>
+            </Select> */}
 
+            <span className="text-lg text-gray-800">
+              Book your VIP table now for an unforgettable night!
+            </span>
             {/* Date */}
             <div className="flex justify-between gap-4">
              <span className="border rounded-lg px-4 pt-1">
@@ -140,7 +143,7 @@ export default function VipTablesForm() {
              </span>
 
               <Input
-              type="datetime-local"
+              type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
@@ -151,7 +154,7 @@ export default function VipTablesForm() {
 
             {/* Guests + Budget */}
             <div className="grid grid-cols-2 gap-4">
-              <Select
+              {/* <Select
                 value={formData.guests}
                 onValueChange={(val) => handleSelectChange("guests", val)}
                 required
@@ -165,7 +168,16 @@ export default function VipTablesForm() {
                   <SelectItem value="21-50">21-50</SelectItem>
                   <SelectItem value="51+">51+</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
+              <Input
+                placeholder="No. of Guests"
+                name="guests"
+                type="number"
+                value={formData.guests}
+                onChange={handleChange}
+                required
+              />
+
 
               <Select
                 value={formData.budget}
@@ -176,10 +188,10 @@ export default function VipTablesForm() {
                   <SelectValue placeholder="Select Budget" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="$100-$250">$100 - $250</SelectItem>
-                  <SelectItem value="$251-$500">$251 - $500</SelectItem>
-                  <SelectItem value="$501-$1000">$501 - $1000</SelectItem>
-                  <SelectItem value="$1000+">$1000+</SelectItem>
+                  <SelectItem value="$100-$250">$500+</SelectItem>
+                  <SelectItem value="$251-$500">$1000+</SelectItem>
+                  <SelectItem value="$501-$1000">$2000+</SelectItem>
+                  <SelectItem value="$1000+">$5000+</SelectItem>
                 </SelectContent>
               </Select>
             </div>

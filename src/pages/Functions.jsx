@@ -140,6 +140,7 @@ export default function TableRequestForm() {
         <div className="p-6 md:p-10 flex flex-col justify-between">
           <div className="mb-6">
             <h2 className="text-xl md:text-2xl font-semibold mb-2">Request Your Function</h2>
+            <span> Go big or go home! Book your function now!</span>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -167,7 +168,7 @@ export default function TableRequestForm() {
               </span>
 
               <Input
-              type="datetime-local"
+              type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
@@ -178,7 +179,7 @@ export default function TableRequestForm() {
 
             {/* Guests + Budget */}
             <div className="grid grid-cols-2 gap-4">
-              <Select
+              {/* <Select
                 value={formData.guests}
                 onValueChange={(val) => handleSelectChange("guests", val)}
               >
@@ -191,7 +192,16 @@ export default function TableRequestForm() {
                   <SelectItem value="21-50">21-50</SelectItem>
                   <SelectItem value="51+">51+</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
+
+              <Input
+                placeholder="Number of Guests"
+                name="guests"
+                type="number"
+                value={formData.guests}
+                onChange={handleChange}
+                required
+              />
 
               <Select
                 value={formData.budget}
@@ -201,10 +211,10 @@ export default function TableRequestForm() {
                   <SelectValue placeholder="Select Budget" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="$100-$250">$100 - $250</SelectItem>
-                  <SelectItem value="$251-$500">$251 - $500</SelectItem>
-                  <SelectItem value="$501-$1000">$501 - $1000</SelectItem>
-                  <SelectItem value="$1000+">$1000+</SelectItem>
+                  <SelectItem value="$100-$250">$500 +</SelectItem>
+                  <SelectItem value="$251-$500">$2500 +</SelectItem>
+                  <SelectItem value="$501-$1000">$5000 +</SelectItem>
+                  <SelectItem value="$1000+">$10000 +</SelectItem>
                 </SelectContent>
               </Select>
             </div>

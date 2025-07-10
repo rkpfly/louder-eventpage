@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 const articlesData = [
   {
@@ -41,11 +41,16 @@ const articlesData = [
 
 export default function NewsSection() {
   const [filter, setFilter] = useState("All");
+  const navigate = useNavigate();
 
   const filteredArticles =
     filter === "All"
       ? articlesData
       : articlesData.filter((article) => article.category === filter);
+
+  const handleOnClick = () => {
+    navigate("/newspage")
+  }
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-purple-300 py-12 px-6">
@@ -73,7 +78,7 @@ export default function NewsSection() {
           {filteredArticles.map((article) => (
             <div
               key={article.id}
-              className="bg-black text-white rounded-lg overflow-hidden shadow-md flex flex-col h-[420px]" // fixed height
+              className="rounded-lg overflow-hidden shadow-md flex flex-col h-[420px]" // fixed height
             >
                 <img
                     src={article.image}
@@ -91,10 +96,10 @@ export default function NewsSection() {
                   </h3>
                 </div>
                 <a
-                    href={article.redirect_url}
+                    onClick={handleOnClick}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white w-full block text-center py-2 rounded-md font-medium bg-blue-500 hover:bg-white hover:text-black transition mt-4"
+                    className="w-full block text-center py-2 rounded-lg border font-medium bg-blue-500 hover:bg-black hover:text-white transition mt-4"
                     >
                     Read More
                 </a>

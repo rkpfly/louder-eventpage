@@ -143,7 +143,7 @@ export default function AdminCreateOffer() {
                       {event.name}
                     </SelectItem>
                   ))}
-                  <SelectItem value="Others">Others</SelectItem>
+                  <SelectItem value="Others">All</SelectItem>
                 </SelectContent>
                 
               </Select>

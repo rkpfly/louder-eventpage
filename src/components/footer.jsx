@@ -10,11 +10,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">SOCIAL</h3>
             <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              <a href="https://www.instagram.com/tamashaclubx/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Instagram</span>
               </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              {/* <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -31,16 +31,16 @@ export default function Footer() {
                   <path d="M11 16.01V8.5c0-1.5 1.5-2.5 3-2.5h4" />
                 </svg>
                 <span className="sr-only">TikTok</span>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              </a> */}
+              {/* <a href="https://x.com/TixMojoOfficial" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <Twitter className="h-6 w-6" />
                 <span className="sr-only">X</span>
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              </a> */}
+              <a href="https://www.facebook.com/tamashaclubx" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <Facebook className="h-6 w-6" />
                 <span className="sr-only">Facebook</span>
               </a>
-              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              {/* <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -59,8 +59,8 @@ export default function Footer() {
                   <path d="M12.5 12.5l3 3" />
                 </svg>
                 <span className="sr-only">Pinterest</span>
-              </a>
-              <a href="https://snapchat.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              </a> */}
+              {/* <a href="https://snapchat.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -76,7 +76,7 @@ export default function Footer() {
                   <path d="M10 18.5c.5 1 1.5 1.5 2 1.5s1.5-.5 2-1.5" />
                 </svg>
                 <span className="sr-only">Snapchat</span>
-              </a>
+              </a> */}
             </div>
           </div>
 
