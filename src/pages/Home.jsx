@@ -13,6 +13,8 @@
 } from "../components/ui/dialog";
 import VipTableModern from "./VipTablesForm"
 import Offerlist from "./Offerlist"
+import EventSliderSection from "./EventSlider"
+import MusicSliderSection from "./MusicSliderSection"
 
 
 
@@ -231,7 +233,6 @@ const musicPlaylists = [
               {/* Tickets Section */}
               <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-12 z-10">
                 <div className="text-white px-6 py-6 w-full max-w-2xl mb-12">
-                  <h2 className="text-4xl font-bold mb-6 text-center p-2">TICKETS</h2>
                   <div className="flex justify-center space-x-4">
                     <Button
                       onClick={openReadMore}
@@ -413,7 +414,7 @@ const musicPlaylists = [
 
 
           {/* Events section */}
-          <section className="py-12 ">
+          {/* <section className="py-12 ">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap justify-between items-center mb-12">
                 <h2 className="text-4xl font-bold">EVENTS</h2>
@@ -444,15 +445,14 @@ const musicPlaylists = [
                 </div>
               </div>
 
-              
-              
               {/* Event slider */}
-              {events.length === 0 ? (
+              {/* {events.length === 0 ? (
               
               <div className="text-center py-12 text-2xl font-semibold">
                 No events right now! Stay tuned!
               </div>
             ) : (
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {events.slice(currentAllEventIndex * 4, (currentAllEventIndex + 1) * 4).map((event) => (
                   <div key={event._id} className="text-center group shadow-lg rounded-lg p-4">
@@ -461,9 +461,9 @@ const musicPlaylists = [
                         src={`${import.meta.env.VITE_API_URL}/${event.imgsrc}` || "/placeholder.svg"}
                         alt={event.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                      /> */}
                       {/* Overlay with buttons */}
-                      <div className="absolute inset-0 bg-black bg-opacity-50 hidden sm:flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-2">
+                      {/* <div className="absolute inset-0 bg-black bg-opacity-50 hidden sm:flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-2">
                         <a href={event.redirection_url}>
                           <Button variant="default" className="px-5 w-32 bg-blue-600 hover:bg-blue-700 text-white">
                             Buy Now!
@@ -481,10 +481,10 @@ const musicPlaylists = [
                             More Info
                           </Button>
                         </a>
-                      </div>
+                      </div> */}
 
                       {/* Mobile-only: full clickable area that redirects to Buy Now */}
-                      <a
+                      {/* <a
                         href={event.redirection_url}
                         className="absolute inset-0 block sm:hidden z-10"
                       />
@@ -492,14 +492,16 @@ const musicPlaylists = [
                     <h3 className="md:text-xl font-bold">{event.name}</h3>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
                 
 
 
-              )}
+              {/* )}
             </div>
-          </section>
+          </section> */} 
+
+          < EventSliderSection events={events} />
 
           {/* <section className="py-16">
             <div className="container mx-auto px-4">
@@ -607,68 +609,8 @@ const musicPlaylists = [
             </div>
           </section>  */}
 
-         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-between items-center mb-12">
-              <h2 className="text-4xl font-bold">MUSIC</h2>
-              <div className="flex items-center space-x-4">
-                <Link to="/music">
-                  <Button variant="outline" className="border-black hover:bg-black hover:text-white">
-                    SHOW ALL
-                  </Button>
-                </Link>
-                <div className="flex space-x-2 mob-button">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={prevMusic}
-                    className="rounded-full border-black hover:bg-black hover:text-white"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={nextMusic}
-                    className="rounded-full border-black hover:bg-black hover:text-white"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {musicPlaylists
-                .slice(currentMusicIndex * 3, (currentMusicIndex + 1) * 3)
-                .map((playlist) => (
-                  <div
-                    key={playlist.id}
-                    className="rounded-lg overflow-hidden shadow-lg bg-white border border-gray-200"
-                  >
-                    <div className="h-64 overflow-hidden">
-                      <img
-                        src={playlist.image}
-                        alt={playlist.title}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    </div>
-                    <div className="p-4 flex flex-col items-center justify-between">
-                      <h3 className="text-xl font-bold text-center mb-4">{playlist.title}</h3>
-                      <a
-                        href={playlist.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full"
-                      >
-                        Listen
-                      </a>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </section>
+          <MusicSliderSection musicPlaylists={musicPlaylists}/>
 
           <Offerlist />
 

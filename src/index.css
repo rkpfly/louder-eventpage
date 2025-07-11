@@ -88,7 +88,9 @@
       gap: 0.2em;
       text-transform: uppercase;
       height: 30%;
-      color:black
+      color:black;
+      padding : 150px, 100px
+
     }
 
 .letter {

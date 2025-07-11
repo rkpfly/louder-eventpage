@@ -40,6 +40,7 @@ import AdminCreateOffer from './pages/admin/AdminCreateOffer';
 import { fetchOffers } from './features/offers/offerSlice';
 import OfferDetailsPage from './pages/OfferDetailsPage';
 import NewsItem from './pages/NewsItem';
+import PostNewsForm from './pages/admin/test';
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +103,8 @@ function App() {
               <Route path="edit-event/:id" element={<AdminEditSingleEvent />} />
               <Route path="add-event" element={<AdminAddEvent />} />
               <Route path="add-offer" element={<AdminCreateOffer />} />
+              <Route path="news" element={<PostNewsForm />} />
+
             </Route>
           </Route>
 
