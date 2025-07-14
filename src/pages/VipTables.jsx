@@ -15,7 +15,7 @@ export default function VipTables() {
         {/* Headings */}
         <div className="text-center">
           <h1 className="text-4xl font-bold">VIP TABLES</h1>
-          <h1 className="text-2xl font-bold mb-12">SEASON 2025</h1>
+          <h1 className="text-2xl font-bold mb-12">SEASON {new Date().getFullYear()}</h1>
         </div>
 
         {/* Intro Content */}

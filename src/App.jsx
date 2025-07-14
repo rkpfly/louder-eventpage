@@ -69,26 +69,26 @@ function App() {
         <Routes>
           <Route path="/" element={<PublicLayout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
+            {/* <Route path="about" element={<About />} /> */}
             <Route path="about-club" element={<AboutClub />} />
             <Route path="careers" element={<Careers />} />
             <Route path="contact" element={<Contact />} />
             <Route path="events" element={<Events />} />
-            <Route path="event/:slug" element={<EventDetails />} />
-            <Route path="event/tickets/:slug" element={<EventTickets />} />
+            {/* <Route path="event/:slug" element={<EventDetails />} /> */}
+            {/* <Route path="event/tickets/:slug" element={<EventTickets />} /> */}
             <Route path="faqs" element={<FAQs />} />
             <Route path="functions" element={<Functions />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="music" element={<Music />} />
             <Route path="offers" element={<Offerlist />} />
             <Route path="offers/:id" element={<OfferDetailsPage />} /> 
-            <Route path="residents" element={<Residents />} />
-            <Route path="special-events" element={<SpecialEvents />} />
+            {/* <Route path="residents" element={<Residents />} /> */}
+            {/* <Route path="special-events" element={<SpecialEvents />} /> */}
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="venue" element={<Venue />} />
             <Route path="vip-tables" element={<VipTables />} />
             <Route path="news" element={<NewsSection />} />
-            <Route path="newspage" element={<NewsItem />} />
+            <Route path="news/:id" element={<NewsItem />} />
 
             <Route path="test" element={<></>} />
           </Route>
@@ -104,7 +104,7 @@ function App() {
               <Route path="add-event" element={<AdminAddEvent />} />
               <Route path="add-offer" element={<AdminCreateOffer />} />
               <Route path="news" element={<PostNewsForm />} />
-
+              
             </Route>
           </Route>
 

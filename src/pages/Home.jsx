@@ -225,13 +225,13 @@ const musicPlaylists = [
             </section> */ }
 
           {/* hero page section */}
-            <section className="h-screen flex flex-col justify-center items-center relative overflow-hidden">
+            <section className="flex flex-col justify-center items-center overflow-hidden">
 
               {/* Word Animator */}
-              <div className="relative z-10 word-animator" id="animator"></div>
+              <div className="z-10 word-animator" id="animator"></div>
 
               {/* Tickets Section */}
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-12 z-10">
+              <div className=" bottom-0 left-0 right-0 flex justify-center pb-12 z-10">
                 <div className="text-white px-6 py-6 w-full max-w-2xl mb-12">
                   <div className="flex justify-center space-x-4">
                     <Button

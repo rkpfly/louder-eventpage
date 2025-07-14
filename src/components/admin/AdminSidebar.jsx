@@ -6,7 +6,8 @@ const navLinks = [
   { label: "Events Dashboard", to: "/admin/dashboard" },
   { label: "Add Event", to: "/admin/add-event" },
   { label: "Add Another Admin", to: "/admin/add-admin" },
-  { label : "add Offer", to: "/admin/add-offer" },
+  { label : "Add Offer", to: "/admin/add-offer" },
+  { label : "Add News", to : "/admin/news"}
 
 ]
 
@@ -39,8 +40,9 @@ export default function AdminSidebar() {
       <Separator className="my-6 bg-gray-700" />
 
       <div className="pt-4">
-        &copy; Tamasha {new Date().getFullYear()}
-
+        <a href="/">
+          &copy; Tamasha {new Date().getFullYear()}
+        </a>
       </div>
     </aside>
   )

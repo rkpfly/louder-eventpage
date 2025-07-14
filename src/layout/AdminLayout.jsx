@@ -16,7 +16,6 @@ export default function AdminLayout(){
                 <main className="min-h-screen">
                     <Outlet />
                 </main>
-            <Footer />
         </div>
     );
 }

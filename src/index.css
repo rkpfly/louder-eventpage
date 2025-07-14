@@ -89,27 +89,30 @@
       text-transform: uppercase;
       height: 30%;
       color:black;
-      padding : 150px, 100px
+      padding : 150px, 100px;
+      min-height: 25vh;
+}
 
-    }
+@media (max-width: 600px) {
+  .word-animator {
+    margin-top: 10rem;
+  }
+}
 
 .letter {
       opacity: 0;
       transform: scale(0.8);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
+      transition: opacity 0.1s ease, transform 0.1s ease;
+}
 
 .letter.show {
       opacity: 1;
       transform: scale(1);
-    }
+}
 
 
-
-  @media (max-width: 640px) {
-    .mob-button {
-      display : none;
-    }
+@media (max-width: 640px) {
+  .mob-button {
+    display : none;
   }
-
-
+}
